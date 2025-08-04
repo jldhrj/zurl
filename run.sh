@@ -14,10 +14,6 @@ runRedis(){
     fi
 }
 
-# 数据迁移
-run_migrations() {
-    alembic upgrade head
-}
 
 # 启动主进程
 runMain(){
@@ -29,6 +25,8 @@ runMain(){
     fi
     # 启动主进程
     source myenv/bin/activate
+    # 执行数据库迁移
+    alembic upgrade head
     uvicorn app.main:app --workers ${WORKERS} --host 0.0.0.0 --port 3080
 }
 
@@ -37,7 +35,8 @@ if [ -z "$ARG1" ]; then
     runRedis && run_migrations && runMain
 elif [ "$ARG1" = "dev" ]; then
     echo "Running in development mode..."
-    run_migrations
+    # 执行数据库迁移
+    alembic upgrade head
     uvicorn app.main:app --reload --host 0.0.0.0 --port 3080
 else
     echo "Unknown argument: $ARG1"

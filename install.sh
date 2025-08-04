@@ -6,6 +6,7 @@ install_deps(){
     apk add python3
     apk add py3-pip
     mkdir -p  /opt/zurl && cd /opt/zurl
+    mkdir -p /opt/zurl/app/data/db
 }
 
 # 安装 Python 依赖
