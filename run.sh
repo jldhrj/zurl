@@ -2,6 +2,9 @@
 
 ARG1=$1
 
+# 数据库路径
+DB_PATH="/opt/zurl/app/data/db"
+
 # 启动redis
 runRedis(){
     redis-server app/config/redis.conf --daemonize yes
@@ -11,6 +14,13 @@ runRedis(){
     else
         echo "Failed to start Redis."
         exit 1
+    fi
+}
+
+# 检查数据库路径是否存在，如果不存在则创建
+exist_db(){
+    if [ ! -d "$DB_PATH" ]; then
+        mkdir -p "$DB_PATH"
     fi
 }
 
@@ -32,8 +42,9 @@ runMain(){
 
 # 获取第一个参数，如果不存在，则执行下面的命令，如果为dev则执行另外的命令
 if [ -z "$ARG1" ]; then
-    runRedis && runMain
+    runRedis && exist_db && runMain
 elif [ "$ARG1" = "dev" ]; then
+    exist_db
     echo "Running in development mode..."
     # 执行数据库迁移
     alembic upgrade head
