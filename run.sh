@@ -32,7 +32,7 @@ runMain(){
 
 # 获取第一个参数，如果不存在，则执行下面的命令，如果为dev则执行另外的命令
 if [ -z "$ARG1" ]; then
-    runRedis && run_migrations && runMain
+    runRedis && runMain
 elif [ "$ARG1" = "dev" ]; then
     echo "Running in development mode..."
     # 执行数据库迁移
