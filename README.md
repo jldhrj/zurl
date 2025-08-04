@@ -2,6 +2,10 @@
 
 Zurl 是一款简单且实用的短链接系统，可以快速生成短链接，方便分享和管理。Zurl 旨在提供一个轻量级的解决方案，帮助用户更好地管理和跟踪链接。
 
+![970c82f82f62fe5c.png](https://img.rss.ink/imgs/2025/08/04/970c82f82f62fe5c.png)
+
+![c57c3cce4618acd3.png](https://img.rss.ink/imgs/2025/08/04/c57c3cce4618acd3.png)
+
 ## 功能特点
 
 * [x] **短链接生成**：用户可以将长链接转换为短链接，便于分享和传播。
@@ -35,6 +39,12 @@ services:
 ```
 
 输入`docker-compose up -d`启动，然后访问`http://IP:3080` 根据提示完成初始化！
+
+## 演示
+
+* 演示站点：[https://zurl.demo.mba](https://zurl.demo.mba)
+* 用户名：`xiaoz`
+* 密码：`xiaoz.org`
 
 ## 问题反馈
 
