@@ -44,7 +44,7 @@ services:
 
 * 演示站点：[https://zurl.demo.mba](https://zurl.demo.mba)
 * 用户名：`xiaoz`
-* 密码：`xiaoz.org`
+* 密码：`blog.xiaoz.org`
 
 ## 问题反馈
 
