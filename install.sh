@@ -12,7 +12,7 @@ install_deps(){
 install_python_deps(){
     python3 -m venv myenv
     source myenv/bin/activate
-    pip3 install -r requirements.txt
+    pip3 install -r app/requirements.txt
 }
 
 
