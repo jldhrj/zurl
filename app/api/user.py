@@ -108,5 +108,30 @@ class UserAPI:
     # 用户登录状态
     def is_login(self):
         return show_json(200,"success","")
+    
+    # 用户退出登录，删除数据库中的session
+    async def logout(self,request: Request):
+        # 获取请求头中的 token
+        auth_header = request.headers.get("Authorization")
+        if not auth_header:
+            return show_json(400, "未提供登录令牌")
+        
+        # 提取 token 部分
+        if not auth_header.startswith("Bearer "):
+            return show_json(400, "无效的登录令牌格式")
+        
+        token = auth_header.split(" ")[1]
+        
+        # 从数据库中删除对应的 session
+        db = next(get_db())
+        session = db.query(Sessions).filter(Sessions.token == token).first()
+        if not session:
+            return show_json(400, "无效的登录令牌")
+        
+        db.delete(session)
+        db.commit()
+        db.close()
+        
+        return show_json(200, "success")
 
 

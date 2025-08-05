@@ -28,6 +28,9 @@ class UrlSearchItem(BaseModel):
     filter: str
     keyword: str
 
+class UrlDeleteItem(BaseModel):
+    ids: list
+
 # 限制的短链接名称
 DENY_SHORT_URLS = ["api","init", "admin", "login", "logout", "register", "import", "export"]
 
@@ -413,3 +416,13 @@ class UrlAPI:
             "limit": 30,
             "urls": urls
         })
+    
+    # 批量删除短链接
+    def batch_delete(self, ids:UrlDeleteItem):
+        # 批量删除ids
+        db = next(get_db())
+        db.query(Urls).filter(Urls.id.in_(ids.ids)).delete(synchronize_session=False)
+        db.commit()
+        db.close()
+
+        return show_json(200, "success", len(ids.ids))

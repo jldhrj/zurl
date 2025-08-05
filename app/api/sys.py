@@ -2,9 +2,9 @@ from app.config import get_config
 from app.utils.helper import *
 
 # 版本号
-VERSION = "1.0.0"
+VERSION = "1.0.1"
 # 版本日期
-VERSION_DATE = "20250804"
+VERSION_DATE = "20250805"
 
 class SysAPI:
 

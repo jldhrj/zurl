@@ -18,6 +18,7 @@ async def get_current_session(request: Request):
     # 从数据库中查询会话
     db = next(get_db())
     session = db.query(Sessions).filter(Sessions.token == token).first()
+    db.close()
 
     # 如果会话不存在或已过期，返回401错误
     if not session or session.expires_at < int(time.time()):

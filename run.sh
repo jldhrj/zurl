@@ -44,7 +44,7 @@ runMain(){
 if [ -z "$ARG1" ]; then
     runRedis && exist_db && runMain
 elif [ "$ARG1" = "dev" ]; then
-    exist_db
+    # exist_db
     echo "Running in development mode..."
     # 执行数据库迁移
     alembic upgrade head

@@ -24,6 +24,7 @@ async def index(request: Request):
 
 # 短链接跳转
 @router.get("/{short_url}")
+@router.head("/{short_url}")
 async def redirect_to_long_url(
     short_url: str, 
     request: Request = None
@@ -50,6 +51,11 @@ async def import_urls(file: UploadFile = File(...), session = Depends(get_curren
 @router.get("/api/urls")
 async def get_urls(request: Request, session = Depends(get_current_session),page: int = 1, limit: int = 10):
     return urlAPI.get_list(page=page, limit=limit)
+
+# 批量删除短链接
+@router.post("/api/delete/urls")
+async def batch_delete_urls(item: UrlDeleteItem, session = Depends(get_current_session)):
+    return urlAPI.batch_delete(ids=item)
 
 # 清空所有链接
 @router.post("/api/urls/clear")
@@ -85,6 +91,11 @@ async def search_urls(item: UrlSearchItem, session = Depends(get_current_session
 @router.get("/api/user/is_login")
 async def is_login(session = Depends(get_current_session)):
     return userAPI.is_login()
+
+# 用户退出登录
+@router.get("/api/user/logout")
+async def logout(request: Request, session = Depends(get_current_session)):
+    return await userAPI.logout(request=request)
 
 # 用户初始化
 @router.post("/api/user/init")
