@@ -43,6 +43,23 @@ services:
 
 输入`docker-compose up -d`启动，然后访问`http://IP:3080` 根据提示完成初始化！
 
+## 设置
+
+**UA屏蔽**
+
+可以在挂载目录下找到`config.toml`中的`app.DENY_UA`添加需要屏蔽的User-Agent，默认屏蔽：
+
+* *信
+* *Q
+
+> 注意：修改配置后需要重启容器！
+
+**重置密码**
+
+如果您忘记了管理员账号或密码，可以删除挂载目录下的`config.toml`文件，然后重启容器并重新访问Zurl完成初始化即可。（此操作不影响数据）
+
+> 切勿删除挂载目录下的`db`目录，否则会导致链接数据丢失。
+
 ## 演示
 
 * 演示站点：[https://zurl.demo.mba](https://zurl.demo.mba)
