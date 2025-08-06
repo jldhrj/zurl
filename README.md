@@ -71,6 +71,13 @@ services:
 * 如果有任何问题可以在[Issues](https://github.com/helloxz/zurl/issues) 中提交。
 * 或者添加我的微信：`xiaozme`，请务必备注Zurl
 
+## 技术栈
+
+* 后端：Python3 + FastAPI
+* 前端：Vue3 + Element Plus
+* 数据库：SQLite3
+* 缓存：Redis
+
 ## 其他产品
 
 如果您有兴趣，还可以了解我们的其他产品。

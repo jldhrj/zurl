@@ -111,3 +111,18 @@ async def get_app_info(session = Depends(get_current_session)):
 @router.get("/api/get/siteinfo")
 async def get_siteinfo():
     return await sysAPI.siteInfo()
+
+# 生成token接口
+@router.get("/api/user/create_token")
+async def create_token(request: Request,session = Depends(get_current_session)):
+    return await userAPI.create_token(request=request)
+
+# 更换token接口
+@router.get("/api/user/change_token")
+async def change_token(request: Request, session = Depends(get_current_session)):
+    return await userAPI.change_token(request=request)
+
+# 获取API Token
+@router.get("/api/user/get_token")
+async def get_token(request:Request,session = Depends(get_current_session)):
+    return await userAPI.get_token(request=request)
